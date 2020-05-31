@@ -1,0 +1,181 @@
+import Foundation
+
+//Crearemos nuestra clase ClienteMovistar
+
+public class ClienteMovistar 
+{
+    //Ahora creamos nuestras variables
+    
+    var nombres:String
+    var dni:Int
+    var codServ:String
+    //Aqui se completará de acuerdo al mes actual
+    let mes = "abril"
+    //Deberemos de inicializar las variables que necesitemos para calcular los costos
+    var servicio = ""
+    var costServ = 0.00
+    var costInstal = 0.00
+    var desc = 0.00
+    
+    //Inicializamos en forma de getters las variables que necesitemos ingresar valores
+    init (nombres:String, dni:Int, codServ:String)
+    {
+        self.nombres = nombres
+        self.dni = dni
+        self.codServ = codServ
+    }
+    
+    //Ahora necesitaremos crear una función para poder llamarlo posteriormente y calcular lo que se pide
+    
+    func calcular()
+    {
+        switch codServ {
+            case "I60":
+                servicio = "Internet 60mb"
+                costServ = 220.00
+                costInstal = 20.00
+                //Calcularemos si tiene o no descuento de acuerdo al mes
+                if(mes == "abril")
+                {
+                    desc = costServ*0.25
+                }
+            case "I20":
+                servicio = "Internet 20mb"
+                costServ = 100.00
+                costInstal = 20.00
+                //Calcularemos si tiene o no descuento de acuerdo al mes
+                if(mes == "abril")
+                {
+                    desc = costServ*0.05
+                }
+            case "I40":
+                servicio = "Internet Satelital 40mb"
+                costServ = 180.00
+                costInstal = 30.00
+                //Calcularemos si tiene o no descuento de acuerdo al mes
+                if(mes == "abril")
+                {
+                    desc = costServ*0.10
+                }
+            default:
+                print("Codigo incorrecto")
+        }
+        
+         //Calcularemos el total
+        var Total = costServ + costInstal - desc
+    
+         //Imprimeremos los resultados
+        print("Contrato de servicios Movistar")
+        print("===================================")
+        print("Cliente" + nombres)
+        print("DNI \(dni)")
+        print("Servicio: " + servicio)
+        print("===================================")
+        print("Detalle de costos")
+        print("Costo de Servicio \(costServ)")
+        print("Costo de Instalación \(costInstal)")
+        print("Descuento \(desc)")
+         print("===================================")
+        print("Total a pagar \(Total)")
+        }
+}
+
+//Ahora llamaremos a nuestra función, no sin antes instanciar la clase
+//Y rellenaremos con los valores que deseemos ingresar
+
+var oCli = ClienteMovistar(nombres: "Alex Vivanco Rodriguez",dni: 77700777,codServ:"I20")
+
+oCli.calcular()
+
+====
+
+import Foundation
+//Para el siguiente ejercicio solo necesitaremos cambiar algunas cosas
+//Crearemos nuestra clase MenuOffice
+
+public class MenuOffice 
+{
+    //Ahora creamos nuestras variables
+    
+    var menu:String
+    var cant:Double
+    var deliv:Bool
+    //Deberemos de inicializar las variables que necesitemos para calcular los costos
+    var precio = 0.00
+    var Total = 0.00
+    var costDeliv = 0.00
+    var desc = 0.00
+    var TotalPagar = 0.00
+    
+    //Inicializamos en forma de getters las variables que necesitemos ingresar valores
+    init (menu:String, cant:Double, deliv:Bool)
+    {
+        self.menu = menu
+        self.cant = cant
+        self.deliv = deliv
+    }
+    
+    //Ahora necesitaremos crear una función para poder llamarlo posteriormente y calcular lo que se pide
+    
+    func calcular()
+    {
+        switch menu {
+            case "Arroz con pollo":
+                precio = 10.00
+                Total = precio * cant
+            
+            case "Arroz Chaufa":
+                precio = 8.00
+                Total = precio * cant
+            case "Aji de gallina":
+                precio = 7.00
+                Total = precio * cant
+            case "Pollo a la brasa":
+                precio = 12.00
+                Total = precio * cant
+            default:
+                print("Codigo incorrecto")
+        }
+        
+        // para calcular el descuento
+        if (Total > 40) {
+            desc = Total*0.05
+        }
+        //Para calcular si existe costo o no del Delivery
+        if (deliv==true)
+        {
+            costDeliv = 7.00
+        }
+        
+        
+         //Calcularemos el total
+        TotalPagar = Total + costDeliv - desc
+    
+         //Imprimeremos los resultados
+        print("MenuOffice")
+        print("===================================")
+        print("Menu" + menu)
+        print("Precio \(precio)")
+        print("Cantidad \(cant)")
+        if (deliv==true)
+        {
+            print("Delivery: SI")
+        }else {
+            print("Delivery: NO")
+        }
+        print("===================================")
+        print("Detalle de costos")
+        print("Total \(Total)")
+        print("Costo de Delivery \(costDeliv)")
+        print("Descuento \(desc)")
+         print("===================================")
+        print("Total a pagar \(TotalPagar)")
+        }
+}
+
+//Ahora llamaremos a nuestra función, no sin antes instanciar la clase
+//Y rellenaremos con los valores que deseemos ingresar
+
+var oMenu = MenuOffice(menu: "Arroz con pollo",cant: 10,deliv:true)
+
+oMenu.calcular()
